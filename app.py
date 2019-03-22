@@ -44,17 +44,14 @@ def liveTrack():
         ax.coastlines()
         ax.gridlines()
         plt.show(block= False)
-        plt.pause()
+        plt.pause(1)
         plt.close()
 if __name__ == "__main__":
     astronauts = astronauts_data()
     names = get_names(astronauts)
+    printAstronauts(astronauts)
+    print("\n\nFetching Details ...")
     details = {k:v for k,v in zip(names, [fetch_data(i) for i in names])}
     for i in details:
         print(i, details[i])
-    location = location_data()
-    longs = location['iss_position']['longitude']
-    lats = location['iss_position']['latitude']
-    printAstronauts(astronauts)
-    plot(lats, longs)
     liveTrack()
